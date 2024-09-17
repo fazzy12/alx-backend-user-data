@@ -45,3 +45,19 @@ class Auth:
         Returns None - no user is currently authenticated
         """
         return None
+
+
+    def extract_base64_authorization_header(self, authorization_header: str) -> str:
+        """Extracts the Base64 part of the
+        Authorization header for Basic Authentication."""
+        if authorization_header is None or not isinstance(authorization_header, str):
+            return None
+
+        if not authorization_header.startswith("Basic "):
+            return None
+        # Return the part after "Basic "
+        return authorization_header[len("Basic "):]
+
+
+    def decode_base64_authorization_header(self, base64_authorization_header: str) -> str:
+        
